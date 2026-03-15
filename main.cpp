@@ -8,6 +8,7 @@ void SpawnAlignedParticles(float* positionsX, float* positionsY, float* OLDposit
 
 int main() {
     graphics::initWindow();
+    graphics::loadAssets();
 
     float *positionsX = (float*)_aligned_malloc(physics::particleCount * sizeof(float), 64);
     float *positionsY = (float*)_aligned_malloc(physics::particleCount * sizeof(float), 64);
@@ -34,6 +35,9 @@ int main() {
     _aligned_free(positionsY);
     _aligned_free(OLDpositionsX);
     _aligned_free(OLDpositionsY);
+
+    graphics::unloadAssets();
+    graphics::terminateWindow();
 
     return 0;
 };

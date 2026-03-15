@@ -3,6 +3,8 @@
 #include "physics.hpp"
 
 namespace graphics {
+    Shader circleShader;
+
     void initWindow() {
         int winSizeX = (int)graphics::screenSize.x;
         int winSizeY = (int)graphics::screenSize.y;
@@ -25,11 +27,27 @@ namespace graphics {
         CloseWindow();
     }
 
+    void loadAssets() {
+        circleShader = LoadShader(0, "circle.fs");
+    };
+
+    void unloadAssets() {
+        UnloadShader(circleShader);
+    };
+
     void drawAllParticles(float* positionsX, float* positionsY) {
+        constexpr float circleRadius = dynamics::particleRadius;
+        constexpr float circleSize = circleRadius * 2.0f;
+       
+        BeginShaderMode(circleShader);
         for (auto i = 0u; i < physics::particleCount; ++i) {
-            float posX = positionsX[i];
-            float posY = positionsY[i];
-            DrawRectangle(posX, posY, dynamics::particleRadius, dynamics::particleRadius, dynamics::particleColor);
+            DrawRectanglePro(
+                { positionsX[i] - circleRadius, positionsY[i] - circleRadius, circleSize, circleSize},
+                { 0, 0 },
+                0.0f,
+                dynamics::particleColor
+            );
         }
+        EndShaderMode();
     }
 }

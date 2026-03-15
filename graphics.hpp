@@ -15,6 +15,10 @@ namespace graphics {
     void endDraw();
     void terminateWindow();
 
+    // SHADER METHODS
+    void loadAssets();
+    void unloadAssets();
+
     // INTERACTIONS
     void drawAllParticles(float* positionsX, float* positionsY);
 }
