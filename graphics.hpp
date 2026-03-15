@@ -6,7 +6,7 @@
 namespace graphics {
     // WINDOW CONFIG
     inline vec2::Vector2f screenSize = { 1440.0f, 1280.0f };
-    inline constexpr unsigned short fpsTarget = 240;
+    inline constexpr unsigned short fpsTarget = -1;
     inline const Color backgroundColor = {34, 34, 34, 255};
 
     // METHODS

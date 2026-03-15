@@ -4,5 +4,5 @@
 
 namespace dynamics {
     inline constexpr Color particleColor = { 192, 192, 192, 255 };
-    inline constexpr float particleRadius = 3.0f;
+    inline constexpr float particleRadius = 6.0f;
 }
