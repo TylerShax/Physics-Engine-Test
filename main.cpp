@@ -4,7 +4,7 @@
 #include "particle.hpp"
 #include "physics.hpp"
 
-void SpawnAlignedParticles(std::vector<float>& positionsX, std::vector<float>& positionsY, std::vector<float>& OLDpositionsX, std::vector<float>& OLDpositionsY);
+void SpawnAlignedParticles(float* positionsX, float* positionsY, float* OLDpositionsX, float* OLDpositionsY);
 
 int main() {
     graphics::initWindow();
@@ -26,7 +26,7 @@ int main() {
         physics::physicsLoop(positionsX, positionsY, OLDpositionsX, OLDpositionsY);
 
         graphics::beginDraw();
-        graphics::drawAllParticles();
+        graphics::drawAllParticles(positionsX, positionsY);
         graphics::endDraw();
     }
 
@@ -38,8 +38,8 @@ int main() {
     return 0;
 };
 
-void SpawnAlignedParticles(std::vector<float>& positionsX, std::vector<float>& positionsY, std::vector<float>& OLDpositionsX, std::vector<float>& OLDpositionsY) {
-    int side = ceil(sqrtf((float)physics::particleCount));
+void SpawnAlignedParticles(float* positionsX, float* positionsY, float* OLDpositionsX, float* OLDpositionsY) {
+    int side = static_cast<int>(ceil(sqrtf((float)physics::particleCount)));
     float spacing = dynamics::particleRadius * 2.0f;
     float offsetToCenter = (side * spacing) / 2.0f;
 
@@ -52,10 +52,10 @@ void SpawnAlignedParticles(std::vector<float>& positionsX, std::vector<float>& p
         float posX = center.x - offsetToCenter + (col * spacing);
         float posY = center.y - offsetToCenter + (row * spacing);
 
-        positionsX.push_back(posX);
-        positionsY.push_back(posY);
+        positionsX[i] = posX;
+        positionsY[i] = posY;
         
-        OLDpositionsX.push_back(posX);
-        OLDpositionsY.push_back(posY);
+        OLDpositionsX[i] = posX;
+        OLDpositionsY[i] = posY;
     }
 }

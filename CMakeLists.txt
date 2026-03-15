@@ -5,6 +5,9 @@ project(PhysicsEngine)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# OpenMP integration
+find_package(OpenMP REQUIRED)
+
 # Download and configure raylib directly from GitHub
 include(FetchContent)
 FetchContent_Declare(
@@ -16,7 +19,12 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE) # We don't need to build raylib's ex
 FetchContent_MakeAvailable(raylib)
 
 # Create your executable and link raylib to it
-add_executable(${PROJECT_NAME} main.cpp particle.cpp)
+add_executable(${PROJECT_NAME} main.cpp physics.cpp graphics.cpp)
 #add_executable(${PROJECT_NAME} vector2.cpp)
 #add_executable(${PROJECT_NAME} particle.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+
+if(MSVC)
+    target_compile_options(PhysicsEngine PRIVATE /02 /0i /0t /0x /GL /openmp)
+    target_link_options(PhysicsEngine PRIVATE /LTCG)
+endif()

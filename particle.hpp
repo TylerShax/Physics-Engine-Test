@@ -1,7 +1,8 @@
+#pragma once
 #include "raylib.h"
 #include "vector2.hpp"
 
 namespace dynamics {
     inline constexpr Color particleColor = { 192, 192, 192, 255 };
-    inline constexpr float particleRadius = 1.0f;
+    inline constexpr float particleRadius = 2.0f;
 }
