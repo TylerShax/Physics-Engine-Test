@@ -14,8 +14,8 @@ namespace physics {
     void physicsStep(bool force, float* positionsX, float* positionsY, float* OLDpositionsX, float* OLDpositionsY) {
         if (physics::timeAccumulator >= physics::physicsTimeStep || force == true) {
 
-            #pragma omp paralell for schedule(static)
-            for (auto i = 0u; i < physics::particleCount; ++i) {
+            #pragma omp parallel for schedule(static)
+            for (auto i = 0; i < physics::particleCount; ++i) {
 
                 float PosX = positionsX[i];
                 float PosY = positionsY[i];

@@ -4,7 +4,7 @@
 
 namespace physics {
     inline vec2::Vector2f gravity = { 0.0f, 800.0f };
-    inline constexpr unsigned short particleCount = 100000;
+    inline constexpr unsigned int particleCount = 1000000;
 
     inline float timeAccumulator = 0.0f;
 

@@ -29,7 +29,7 @@ namespace graphics {
         for (auto i = 0u; i < physics::particleCount; ++i) {
             float posX = positionsX[i];
             float posY = positionsY[i];
-            DrawCircleV({ posX, posY }, dynamics::particleRadius, dynamics::particleColor);
+            DrawRectangle(posX, posY, dynamics::particleRadius, dynamics::particleRadius, dynamics::particleColor);
         }
     }
 }
